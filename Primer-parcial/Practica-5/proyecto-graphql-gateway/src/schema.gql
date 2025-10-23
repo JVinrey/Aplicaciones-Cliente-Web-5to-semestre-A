@@ -1,0 +1,165 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Calificacione {
+  cliente: Cliente!
+  fecha: DateTime!
+  id: String!
+  puntuacion: Int!
+  servicio: Servicio!
+}
+
+type Categoria {
+  descripcion: String!
+  id: String!
+  nombre: String!
+  servicio: [Servicio!]
+}
+
+type CategoriaCount {
+  cantidad: Float!
+  categoria: String!
+}
+
+type Cliente {
+  calificacion: [Calificacione!]
+  comentario: [Comentario!]
+  id: String!
+  reserva: [Reserva!]
+  telefono: String!
+  ubicacion: Ubicacione!
+  user: User!
+}
+
+type Comentario {
+  cliente: Cliente!
+  fecha: DateTime!
+  id: String!
+  respuesta: String!
+  servicio: Servicio!
+  texto: String!
+  titulo: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type FotoServicio {
+  descripcion: String!
+  id: String!
+  servicio: Servicio!
+  url_foto: String!
+}
+
+type Pago {
+  estado: String!
+  fecha_pago: DateTime!
+  id: String!
+  metodo_pago: String!
+  monto: Int!
+  referencia: String!
+  reserva: Reserva!
+}
+
+type Proveedore {
+  descripcion: String!
+  id: String!
+  servicio: [Servicio!]
+  telefono: String!
+  ubicacion: Ubicacione!
+  user: User!
+}
+
+type Query {
+  calificacione(id: Int!): Calificacione!
+  calificaciones: [Calificacione!]!
+  categoria(id: Int!): Categoria!
+  categorias: [Categoria!]!
+  categoriasPorFrecuencia: [CategoriaCount!]!
+  cliente(id: Int!): Cliente!
+  clientes: [Cliente!]!
+  comentario(id: Int!): Comentario!
+  comentarios: [Comentario!]!
+  fotoServicio(id: Int!): FotoServicio!
+  fotoServicios: [FotoServicio!]!
+  pago(id: String!): Pago!
+  pagos: [Pago!]!
+  proveedore(id: Int!): Proveedore!
+  proveedores: [Proveedore!]!
+  reserva(id: String!): Reserva!
+  reservaServicio(id: Int!): ReservaServicio!
+  reservas: [Reserva!]!
+  servicio(id: String!): Servicio
+  servicioUbicacion(id: Int!): ServicioUbicacion!
+  servicios: [Servicio!]!
+  ubicacione(id: Int!): Ubicacione!
+  ubicaciones: [Ubicacione!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+type Reserva {
+  cliente: Cliente!
+  estado: String!
+  fecha: String!
+  hora: String!
+  id: String!
+  pago: [Pago!]
+  reserva_servicio: [ReservaServicio!]
+  total_estimado: Float!
+}
+
+type ReservaServicio {
+  estado: String!
+  fechaReserva: DateTime!
+  id: String!
+  reserva: Reserva!
+  servicio: Servicio!
+}
+
+type Servicio {
+  calificaciones: [Calificacione!]
+  categoria: Categoria!
+  duracion: String!
+  fotoServicio: [FotoServicio!]
+  id: String!
+  nombre_servicio: String!
+  proveedor: Proveedore!
+  rating_promedio: Int!
+  reservas: [ReservaServicio!]
+  servicioUbicacion: [ServicioUbicacion!]
+}
+
+type ServicioUbicacion {
+  id: String!
+  servicio: Servicio!
+  ubicacion: Ubicacione!
+}
+
+type Ubicacione {
+  ciudad: String!
+  cliente: [Cliente!]
+  direccion: String!
+  id: String!
+  pais: String!
+  proveedor: [Proveedore!]
+  provincia: String!
+  servicioUbicacion: [ServicioUbicacion!]
+}
+
+type User {
+  cliente: Cliente!
+  email: String!
+  first_name: String!
+
+  """Esta es el id"""
+  id: String!
+  last_name: String!
+  password: String!
+  proveedor: Proveedore!
+  rol: String!
+  username: String!
+}
